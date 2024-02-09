@@ -48,7 +48,7 @@ import java.util.stream.Collectors;
 @Measurement(iterations = 5, time = 15, timeUnit = TimeUnit.SECONDS)
 @Warmup(iterations = 5, time = 15, timeUnit = TimeUnit.SECONDS)
 @State(Scope.Benchmark)
-public class GetBenchmark {
+public class Map_Benchmark {
     @Param({"100", "5000", "100000"})
     private int N;
     private Map map = new ArrayMap();
@@ -90,7 +90,7 @@ public class GetBenchmark {
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
-    @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
     public Object arrayMap() {
         return map.get(key);
     }
@@ -103,8 +103,8 @@ public class GetBenchmark {
 
     public static void main(String[] args) throws RunnerException{
         Options opt = new OptionsBuilder()
-                .include(GetBenchmark.class.getSimpleName())
-                .forks(1)
+                .include(Map_Benchmark.class.getSimpleName())
+                .forks(2)
                 .build();
         new Runner(opt).run();
     }

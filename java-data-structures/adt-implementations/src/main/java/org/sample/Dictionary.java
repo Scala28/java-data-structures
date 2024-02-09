@@ -83,7 +83,7 @@ class ArrayDictionary implements Dictionary{
     }
     public void makeEmpty(){pSize = 0;}
     public boolean isEmpty(){return pSize==0;}
-    //O(1)
+    //O(n)
     public void insert(Object key, Object value){
         if(value == null)
             throw new IllegalArgumentException();
