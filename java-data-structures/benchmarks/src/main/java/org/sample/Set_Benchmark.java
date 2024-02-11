@@ -15,9 +15,10 @@ import java.util.concurrent.TimeUnit;
 @Fork(value = 2)
 @Measurement(iterations = 5, time = 15, timeUnit = TimeUnit.SECONDS)
 @Warmup(iterations = 5, time = 15, timeUnit = TimeUnit.SECONDS)
+@Timeout(time = 3, timeUnit = TimeUnit.MINUTES)
 @State(Scope.Benchmark)
 public class Set_Benchmark {
-    @Param({"100", "5000", "100000"})
+    @Param({"100", "10000", "25000", "50000", "75000", "100000", "150000"})
     private int N;
     private Set set_1 = new ArraySet();
     private Set set_2 = new ArraySet();
@@ -58,44 +59,43 @@ public class Set_Benchmark {
     }
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
-    @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public Set arraySet_union(){
         return ArraySet.union(set_1, set_2);
     }
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
-    @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public Set arraySet_intersection(){
         return ArraySet.intersection(set_1, set_2);
     }
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
-    @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public Set arraySet_subtraction(){
         return ArraySet.subtraction(set_1, set_2);
     }
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
-    @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public SortedSet arraySortedSet_union(){
         return ArraySortedSet.union(sortedSet_1, sortedSet_2);
     }
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
-    @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public SortedSet arraySortedSet_intersection(){
         return ArraySortedSet.intersection(sortedSet_1, sortedSet_2);
     }
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
-    @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public SortedSet arraySortedSet_subtraction(){
         return ArraySortedSet.subtraction(sortedSet_1, sortedSet_2);
     }
     public static void main(String[] args) throws RunnerException{
         Options opt = new OptionsBuilder()
                 .include(Set_Benchmark.class.getSimpleName())
-                .forks(2)
                 .build();
         new Runner(opt).run();
     }

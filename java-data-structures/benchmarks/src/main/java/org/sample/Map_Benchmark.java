@@ -47,9 +47,10 @@ import java.util.stream.Collectors;
 @Fork(value = 2)
 @Measurement(iterations = 5, time = 15, timeUnit = TimeUnit.SECONDS)
 @Warmup(iterations = 5, time = 15, timeUnit = TimeUnit.SECONDS)
+@Timeout(time = 3, timeUnit = TimeUnit.MINUTES)
 @State(Scope.Benchmark)
 public class Map_Benchmark {
-    @Param({"100", "5000", "100000"})
+    @Param({"100", "10000", "25000", "50000", "75000", "100000", "150000"})
     private int N;
     private Map map = new ArrayMap();
     private SortedMap sortedMap = new ArraySortedMap();
@@ -104,7 +105,6 @@ public class Map_Benchmark {
     public static void main(String[] args) throws RunnerException{
         Options opt = new OptionsBuilder()
                 .include(Map_Benchmark.class.getSimpleName())
-                .forks(2)
                 .build();
         new Runner(opt).run();
     }
