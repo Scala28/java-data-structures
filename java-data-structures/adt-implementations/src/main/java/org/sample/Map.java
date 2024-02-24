@@ -125,7 +125,6 @@ class ArrayMap implements Map{
  * @author Scala28
  */
 class ArraySortedMap implements SortedMap{
-
     private Pair[] p;
     private int pSize;
     private static final int INITIAL_CAPACITY = 1;

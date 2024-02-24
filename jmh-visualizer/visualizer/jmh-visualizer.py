@@ -4,8 +4,7 @@ import seaborn as sns
 import pandas as pd
 # import mplcursors
 
-with open('C:/Users/lucas/Desktop/GitHub/java-data-structures'
-          '/java-data-structures/benchmarks/jmh-results_2.json', 'r') as f:
+with open('../../java-data-structures/benchmarks/jmh-results_2.json', 'r') as f:
     jmh_results = json.load(f)
 
 

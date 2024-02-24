@@ -63,6 +63,7 @@ public class Set_Benchmark {
     public Set arraySet_union(){
         return ArraySet.union(set_1, set_2);
     }
+
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)

@@ -76,8 +76,10 @@ public class Map_Benchmark {
     }
     @Setup(Level.Trial)
     public void setUpList(){
-        //map = new ArrayMap();
-        //sortedMap = new ArraySortedMap();
+        /*
+         map.makeEmpty();
+         sortedMap.makeEmpty();
+        */
         List<Integer> list = generateRandomList(N);
         for(int i=0; i<N; i++){
             map.put(i, list.get(i));
